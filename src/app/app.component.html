@@ -1,0 +1,19 @@
+<h1>{{ title }}</h1>
+<form>
+  <input type="text" placeholder="id" id="idText" #id />
+  <input type="text" placeholder="name" id="nameText" #name />
+  <button
+    class="get"
+    type="button"
+    id="getButton"
+    (click)="getDemoPerson(id.value, name.value)"
+  >
+    取得
+  </button>
+  <button class="put" type="button" (click)="putDemoPerson()">登録</button>
+  <button class="post" type="button">更新</button>
+  <button class="delete" type="button" (click)="deleteDemoPerson()">
+    削除
+  </button>
+  <div>{{ msg | json }}</div>
+</form>
