@@ -7,7 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AppService {
   private apiUrl =
-    'https://dqcdrwacr8.execute-api.ap-northeast-1.amazonaws.com/test/yusuke_testGET/100/suzukiTest100/';
+    'https://dqcdrwacr8.execute-api.ap-northeast-1.amazonaws.com/test/yusukeAngularTest/';
 
   constructor(private http: HttpClient) {}
 
@@ -19,36 +19,59 @@ export class AppService {
     body: null,
   };
 
-  getApi(id: string, name: string): Observable<any> {
+  getApi(id: string): Observable<any> {
+    this.apiUrl =
+      'https://dqcdrwacr8.execute-api.ap-northeast-1.amazonaws.com/test/yusukeAngularTest/' +
+      id +
+      '/';
     return this.http.get<any>(this.apiUrl, this.httpOptions).pipe(
-      tap((response) => console.log(response.type)),
-      catchError((error) => {
-        throw new Error(error.message);
-      })
-    );
-  }
-
-  postApi(): Observable<any> {
-    return this.http.post<any>(this.apiUrl, this.httpOptions).pipe(
       tap((response) => console.log(response)),
       catchError((error) => {
         throw new Error(error.message);
       })
     );
   }
+
   putAPi =
-    'https://dqcdrwacr8.execute-api.ap-northeast-1.amazonaws.com/test/yusukeapi/500/suzukiTest500/';
+    'https://dqcdrwacr8.execute-api.ap-northeast-1.amazonaws.com/test/yusukeAngularTest/';
 
-  putApi(): Observable<any> {
-    return this.http.put<any>(this.putAPi, this.httpOptions).pipe(
-      tap((response) => console.log(response)),
-      catchError((error) => {
-        throw new Error(error.message);
+  postApi(id: string, name: string): Observable<any> {
+    this.apiUrl = this.putAPi + id + '/' + name + '/';
+    return this.http
+      .post<any>(this.apiUrl, {
+        pathParameters: {
+          id: id,
+          name: name,
+        },
       })
-    );
+      .pipe(
+        tap((response) => console.log(response)),
+        catchError((error) => {
+          throw new Error(error.message);
+        })
+      );
   }
 
-  deleteApi(): Observable<any> {
+  putApi(id: string, name: string): Observable<any> {
+    this.apiUrl = this.putAPi + id + '/' + name + '/';
+    console.log(this.apiUrl);
+    return this.http
+      .put<any>(this.apiUrl, {
+        pathParameters: {
+          id: id,
+          name: name,
+        },
+      })
+      .pipe(
+        tap((response) => console.log(response)),
+        catchError((error) => {
+          throw new Error(error.message);
+        })
+      );
+  }
+
+  deleteApi(id: string): Observable<any> {
+    this.apiUrl = this.putAPi + id + '/' + name + '/';
     return this.http.delete<any>(this.apiUrl, this.httpOptions).pipe(
       tap((response) => console.log(response)),
       catchError((error) => {

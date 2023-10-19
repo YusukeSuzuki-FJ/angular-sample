@@ -13,26 +13,31 @@ export class AppComponent {
   constructor(private appService: AppService) {}
 
   msg = '';
-  onClick(valueId: string, valueName: string) {
-    this.msg = `ID: ${valueId}, Name: ${valueName}`;
-  }
 
-  getDemoPerson(valueId: string, valueName: string): void {
+  getDemoPerson(valueId: string): void {
     this.appService
-      .getApi(valueId, valueName)
+      .getApi(valueId)
       .subscribe(
         (message) =>
-          (this.msg = `ID: ${valueId}, Name: ${message['body']['message']['S']}`)
+          (this.msg = `ID: ${message['body']['message']['person_id']['S']}, Name: ${message['body']['message']['name']['S']}`)
       );
   }
 
-  putDemoPerson(): void {
+  postDemoPerson(valueId: string, valueName: string): void {
     this.appService
-      .putApi()
-      .subscribe((message) => (this.msg = message['body']));
+      .postApi(valueId, valueName)
+      .subscribe((message) => (this.msg = message['body']['message']));
   }
 
-  deleteDemoPerson(): void {
-    this.appService.deleteApi().subscribe();
+  putDemoPerson(valueId: string, valueName: string): void {
+    this.appService
+      .putApi(valueId, valueName)
+      .subscribe((message) => (this.msg = message['body']['message']));
+  }
+
+  deleteDemoPerson(valueId: string): void {
+    this.appService
+      .deleteApi(valueId)
+      .subscribe((message) => (this.msg = message['body']['message']));
   }
 }

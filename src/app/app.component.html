@@ -6,13 +6,25 @@
     class="get"
     type="button"
     id="getButton"
-    (click)="getDemoPerson(id.value, name.value)"
+    (click)="getDemoPerson(id.value)"
   >
     取得
   </button>
-  <button class="put" type="button" (click)="putDemoPerson()">登録</button>
-  <button class="post" type="button">更新</button>
-  <button class="delete" type="button" (click)="deleteDemoPerson()">
+  <button
+    class="put"
+    type="button"
+    (click)="postDemoPerson(id.value, name.value)"
+  >
+    登録
+  </button>
+  <button
+    class="post"
+    type="button"
+    (click)="putDemoPerson(id.value, name.value)"
+  >
+    更新
+  </button>
+  <button class="delete" type="button" (click)="deleteDemoPerson(id.value)">
     削除
   </button>
   <div>{{ msg | json }}</div>
