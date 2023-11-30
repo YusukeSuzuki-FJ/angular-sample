@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  background-image: url(testBackground.jpg);
+  background-image: url(../testBackground.jpg);
 }
 
 .desktop .overlap-wrapper {
@@ -278,4 +278,10 @@
   height: 267px;
   top: 0;
   left: 0;
+}
+
+.desktop .notification {
+  color: #fce302;
+  position: absolute;
+  top: 50px;
 }

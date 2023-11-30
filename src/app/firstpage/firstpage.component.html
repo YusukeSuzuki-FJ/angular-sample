@@ -1,0 +1,78 @@
+<div class="desktop">
+  <div class="overlap-wrapper">
+    <div class="overlap">
+      <div class="text-wrapper">Yusuke AngularJS Site</div>
+      <div class="view">
+        <div class="overlap-group">
+          <div class="div-wrapper"><div class="div">結果</div></div>
+          <output class="frame" name="result" for="a b"></output>
+        </div>
+      </div>
+      <div class="view-2">
+        <div class="frame-2">
+          <div class="text-wrapper-2" id="deleteButton">削除</div>
+        </div>
+        <div class="frame-3">
+          <div class="text-wrapper-2" id="updateButton">更新</div>
+        </div>
+        <div class="frame-4">
+          <div class="text-wrapper-2" id="getButton">取得</div>
+        </div>
+        <a
+          class="frame-5"
+          routerLink="/second"
+          routerLinkActive="active"
+          (click)="onClick(id.value, name.value)"
+        >
+          <div class="text-wrapper-2" id="addButton">追加</div>
+        </a>
+      </div>
+      <form [formGroup]="checkoutForm">
+        <div class="view-3">
+          <div class="view-4">
+            <div class="view-5"><div class="text-wrapper-3">name</div></div>
+            <input
+              #name
+              id="name"
+              class="view-wrapper"
+              type="text"
+              name="text"
+              placeholder="name"
+              formControlName="name"
+              required
+            />
+            <div *ngIf="checkoutForm.get('name')?.invalid">
+              <div
+                class="notification"
+                [hidden]="checkoutForm.get('name')?.errors?.['minLength']"
+              >
+                ※ 2文字以上で入力してください
+              </div>
+            </div>
+          </div>
+          <div class="ID">
+            <div class="view-5"><div class="text-wrapper-3">ID</div></div>
+            <input
+              #id
+              class="view-wrapper"
+              type="text"
+              name="text"
+              placeholder="ID"
+              formControlName="id"
+              required
+            />
+            <div *ngIf="checkoutForm.get('id')?.errors">
+              <div
+                class="notification"
+                [hidden]="checkoutForm.get('id')?.errors?.['minLength']"
+              >
+                ※ 3文字以上で入力してください
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="anima.js"></script>
